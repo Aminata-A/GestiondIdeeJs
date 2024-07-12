@@ -8,6 +8,16 @@ body {
     justify-content: center;
     gap: 20px;
 }
+.retour{
+    padding: 0.2em 1em;
+    /* border: solid 0.1px #1d2630; */
+    background-color: #EECEB9;
+    text-decoration: none;
+    color: #1d2630;
+    font-weight: bold;
+    border-radius: 6px;
+
+}
 
 .form-container .form-section {
     flex: 0 0 40em;
@@ -19,7 +29,7 @@ body {
 
 .form-container .image-section {
     flex: 0 0 400px;
-    background-image: url('https://www.pngmart.com/files/4/Design-Transparent-PNG.png');
+    background-image: url('https://www.aurillac.fr/wp-content/uploads/2018/03/boite-a-id.png');
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -100,4 +110,11 @@ textarea{
 
 .btn-light .bi {
     font-size: 1.2em;
+}
+.modal-content{
+    background-color: #FEFBD8;
+    color: #1d2630;
+}
+.btn-close{
+    color: #EECEB9;
 }
