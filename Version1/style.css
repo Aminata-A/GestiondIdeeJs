@@ -1,0 +1,103 @@
+body {
+    color: #1d2630;
+    background-color: #FEFBD8;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.form-container .form-section {
+    flex: 0 0 40em;
+    /* background-color: #EECEB9 50%;
+    opacity: ; */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-container .image-section {
+    flex: 0 0 400px;
+    background-image: url('https://www.pngmart.com/files/4/Design-Transparent-PNG.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+.form{
+    display: flex;
+    justify-content: space-between; 
+}
+.form div {
+    width: 49%;
+}
+textarea{
+    height: 10em;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-container .idea-card {
+    flex: 1 0 300px;
+    background-color: #BB9AB1;
+    border: 1px solid #987D9A;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.idea-card .card-body {
+    padding: 15px;
+    background-color: #EECEB9;
+}
+
+.idea-card .card-text {
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.idea-card .card-footer {
+    background-color: #987D9A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.idea-card .card-footer .status {
+    font-size: 0.875rem;
+    color: white;
+}
+
+.idea-card .card-footer .actions button {
+    margin-right: 5px;
+}
+
+.modal-body {
+    white-space: pre-wrap;
+}
+
+.btn-success {
+    background-color: #987D9A;
+    border-color: #987D9A;
+}
+
+.btn-danger {
+    background-color: #BB9AB1;
+    border-color: #BB9AB1;
+}
+
+.btn-light {
+    background-color: #FEFBD8;
+    border-color: #FEFBD8;
+    color: #1d2630;
+}
+
+.btn-light .bi {
+    font-size: 1.2em;
+}
