@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ideaModal = new bootstrap.Modal(document.querySelector("#ideaModal"));
     let ideas = [];
 
-    // Function to display alerts
+    // Fonction pour afficher les alertes
     function showAlert(message, className) {
         const div = document.createElement("div");
         div.className = `alert alert-${className}`;
@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => document.querySelector(".alert").remove(), 2000);
     }
 
-    // Function to clear form fields
+    // Fonction pour effacer les champs du formulaire
     function clearFields() {
         document.querySelector("#label").value = "";
         document.querySelector("#category").value = "";
         document.querySelector("#description").value = "";
     }
 
-    // Function to render ideas
+    // Fonction pour afficher les idées
     function renderIdeas() {
         ideaList.innerHTML = "";
         ideas.forEach((idea, index) => {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Add Idea
+    // Ajouter une idée
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Handle idea actions
+    // Gérer les actions sur les idées
     ideaList.addEventListener("click", (e) => {
         const index = e.target.closest("button").dataset.index;
         const idea = ideas[index];
@@ -93,6 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Initial render
+    // Initialisation du rendu des idées
     renderIdeas();
 });

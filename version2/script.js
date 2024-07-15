@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("#idea-form");
-    const ideaList = document.querySelector("#idea-list");
-    const ideaModal = new bootstrap.Modal(document.querySelector("#ideaModal"));
-    let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+    const formulaire = document.querySelector("#idea-form");
+    const listeIdees = document.querySelector("#idea-list");
+    const ideeModal = new bootstrap.Modal(document.querySelector("#ideaModal"));
+    let idees = JSON.parse(localStorage.getItem("idees")) || [];
 
-    // Function to display alerts
-    function showAlert(message, className) {
+    // Fonction pour afficher des alertes
+    function afficherAlerte(message, classe) {
         const div = document.createElement("div");
-        div.className = `alert alert-${className}`;
+        div.className = `alert alert-${classe}`;
         div.appendChild(document.createTextNode(message));
         const container = document.querySelector(".container");
         const formContainer = document.querySelector(".form-container");
@@ -15,46 +15,46 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => document.querySelector(".alert").remove(), 2000);
     }
 
-    // Function to clear form fields
-    function clearFields() {
+    // Fonction pour effacer les champs du formulaire
+    function effacerChamps() {
         document.querySelector("#label").value = "";
         document.querySelector("#category").value = "";
         document.querySelector("#description").value = "";
     }
 
-    // Function to save ideas to local storage
-    function saveIdeas() {
-        localStorage.setItem("ideas", JSON.stringify(ideas));
+    // Fonction pour enregistrer les idées dans le local storage
+    function enregistrerIdees() {
+        localStorage.setItem("idees", JSON.stringify(idees));
     }
 
-    // Function to render ideas
-    function renderIdeas() {
-        ideaList.innerHTML = "";
-        ideas.forEach((idea, index) => {
-            const card = document.createElement("div");
-            card.className = "card idea-card";
-            card.innerHTML = `
+    // Fonction pour afficher les idées
+    function afficherIdees() {
+        listeIdees.innerHTML = "";
+        idees.forEach((idee, index) => {
+            const carte = document.createElement("div");
+            carte.className = "card idea-card";
+            carte.innerHTML = `
                 <div class="card-body">
-                    <h5 class="card-title">${idea.label}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${idea.category}</h6>
-                    <p class="card-text">${idea.description}</p>
+                    <h5 class="card-title">${idee.label}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${idee.category}</h6>
+                    <p class="card-text">${idee.description}</p>
                 </div>
                 <div class="card-footer">
-                    <span class="status">${idea.status}</span>
+                    <span class="status">${idee.status}</span>
                     <div class="actions">
-                        ${idea.status === "En attente" ? `<button class="btn btn-success btn-sm approve" data-index="${index}">Approuver</button>` : ""}
-                        ${idea.status === "En attente" ? `<button class="btn btn-danger btn-sm disapprove" data-index="${index}">Refuser</button>` : ""}
-                        <button class="btn btn-light btn-sm view" data-index="${index}"><i class="bi bi-eye"></i></button>
-                        <button class="btn btn-light btn-sm delete" data-index="${index}"><i class="bi bi-trash"></i></button>
+                        ${idee.status === "En attente" ? `<button class="btn btn-success btn-sm approuver" data-index="${index}">Approuver</button>` : ""}
+                        ${idee.status === "En attente" ? `<button class="btn btn-danger btn-sm refuser" data-index="${index}">Refuser</button>` : ""}
+                        <button class="btn btn-light btn-sm voir" data-index="${index}"><i class="bi bi-eye"></i></button>
+                        <button class="btn btn-light btn-sm supprimer" data-index="${index}"><i class="bi bi-trash"></i></button>
                     </div>
                 </div>
             `;
-            ideaList.appendChild(card);
+            listeIdees.appendChild(carte);
         });
     }
 
-    // Add Idea
-    form.addEventListener("submit", (e) => {
+    // Ajouter une idée
+    formulaire.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const label = document.querySelector("#label").value;
@@ -62,46 +62,46 @@ document.addEventListener("DOMContentLoaded", () => {
         const description = document.querySelector("#description").value;
 
         if (label === "" || category === "" || description === "") {
-            showAlert("Veuillez remplir tous les champs", "danger");
+            afficherAlerte("Veuillez remplir tous les champs", "danger");
         } else {
-            ideas.unshift({ label, category, description, status: "En attente" });
-            showAlert("Idée ajoutée", "success");
-            clearFields();
-            saveIdeas();
-            renderIdeas();
+            idees.unshift({ label, category, description, status: "En attente" });
+            afficherAlerte("Idée ajoutée", "success");
+            effacerChamps();
+            enregistrerIdees();
+            afficherIdees();
         }
     });
 
-    // Handle idea actions
-    ideaList.addEventListener("click", (e) => {
+    // Gérer les actions sur les idées
+    listeIdees.addEventListener("click", (e) => {
         const index = e.target.closest("button").dataset.index;
-        const idea = ideas[index];
+        const idee = idees[index];
 
-        if (e.target.classList.contains("approve")) {
-            idea.status = "Approuvée";
-            showAlert(`Idée "${idea.label}" approuvée`, "success");
-            saveIdeas();
-            renderIdeas();
-        } else if (e.target.classList.contains("disapprove")) {
-            idea.status = "Refusée";
-            showAlert(`Idée "${idea.label}" refusée`, "warning");
-            saveIdeas();
-            renderIdeas();
-        } else if (e.target.classList.contains("delete")) {
-            ideas.splice(index, 1);
-            showAlert("Idée supprimée", "danger");
-            saveIdeas();
-            renderIdeas();
-        } else if (e.target.classList.contains("view")) {
-            document.querySelector(".modal-title").textContent = idea.label;
+        if (e.target.classList.contains("approuver")) {
+            idee.status = "Approuvée";
+            afficherAlerte(`Idée "${idee.label}" approuvée`, "success");
+            enregistrerIdees();
+            afficherIdees();
+        } else if (e.target.classList.contains("refuser")) {
+            idee.status = "Refusée";
+            afficherAlerte(`Idée "${idee.label}" refusée`, "warning");
+            enregistrerIdees();
+            afficherIdees();
+        } else if (e.target.classList.contains("supprimer")) {
+            idees.splice(index, 1);
+            afficherAlerte("Idée supprimée", "danger");
+            enregistrerIdees();
+            afficherIdees();
+        } else if (e.target.classList.contains("voir")) {
+            document.querySelector(".modal-title").textContent = idee.label;
             document.querySelector(".modal-body").innerHTML = `
-                <strong>Catégorie:</strong> ${idea.category}<br>
-                <strong>Description:</strong><br>${idea.description}
+                <strong>Catégorie:</strong> ${idee.category}<br>
+                <strong>Description:</strong><br>${idee.description}
             `;
-            ideaModal.show();
+            ideeModal.show();
         }
     });
 
-    // Initial render
-    renderIdeas();
+    // Rendu initial
+    afficherIdees();
 });
