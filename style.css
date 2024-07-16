@@ -2,7 +2,29 @@ body {
     color: #1d2630;
     background-color: #FEFBD8;
 }
-
+header{
+    background-color: #1d2630;
+    color: #FEFBD8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5em;
+    height: 60px;
+}
+header ul{
+    display: flex;
+    align-items: center;
+    width: 25em;
+    margin: 0;
+    justify-content: space-around;
+}
+header ul li{
+    list-style-type: none;
+}
+header ul li a{
+    text-decoration: none;
+    color: #FEFBD8;
+}
 .form-container {
     display: flex;
     justify-content: center;
